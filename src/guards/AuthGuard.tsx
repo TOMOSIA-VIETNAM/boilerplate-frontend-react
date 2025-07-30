@@ -1,3 +1,4 @@
+import { Loading } from '@/components/shared/Loading'
 import { useAuth } from '@/hooks/useAuth'
 import { Navigate, Outlet, useLocation } from 'react-router-dom'
 
@@ -8,22 +9,18 @@ export default function AuthGuard() {
   const { isAuthenticated, isLoading } = useAuth()
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return <Loading />
   }
 
-  return (
-    <>
-      {isAuthenticated ? (
-        !withoutAuthPaths.includes(location.pathname) ? (
-          <Outlet />
-        ) : (
-          <Navigate to="/" />
-        )
-      ) : withoutAuthPaths.includes(location.pathname) ? (
-        <Outlet />
-      ) : (
-        <Navigate to="/login" />
-      )}
-    </>
-  )
+  // If user is authenticated and trying to access login page, redirect to home
+  if (isAuthenticated && location.pathname === '/login') {
+    return <Navigate to="/" replace />
+  }
+
+  // If user is not authenticated and trying to access protected routes, redirect to login
+  if (!isAuthenticated && !withoutAuthPaths.includes(location.pathname)) {
+    return <Navigate to="/login" replace />
+  }
+
+  return <Outlet />
 }

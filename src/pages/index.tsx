@@ -1,29 +1,29 @@
-import { useAuth } from '@/hooks/useAuth'
-import { removeAccessTokenFromLocalStorage } from '@/utils/localStorage'
-import { useQueryClient } from '@tanstack/react-query'
-import { useTranslation } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
+import DashboardControls from '@/components/Dashboard/DashboardControls'
+import IntegrationList from '@/components/Dashboard/IntegrationList'
+import SalesDistribution from '@/components/Dashboard/SalesDistribution'
+import SalesOverview from '@/components/Dashboard/SalesOverview'
+import SummaryCards from '@/components/Dashboard/SummaryCards'
+import TotalSubscriber from '@/components/Dashboard/TotalSubscriber'
 
-export default function Home() {
-  const { t } = useTranslation()
-  const queryClient = useQueryClient()
-  const navigate = useNavigate()
-  const { user } = useAuth()
-
-  const handleLogout = () => {
-    removeAccessTokenFromLocalStorage()
-    queryClient.invalidateQueries({ queryKey: ['me'] })
-    navigate('/login')
-  }
-
+const Home = () => {
   return (
-    <div className="flex h-screen w-full flex-col items-center justify-center">
-      <div className="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-5xl leading-tight text-transparent">
-        {t('hello')} {user?.username}
+    <div className="space-y-6">
+      <DashboardControls />
+      <SummaryCards />
+
+      {/* Middle Section */}
+      <div className="grid grid-cols-2 gap-6">
+        <SalesOverview />
+        <TotalSubscriber />
       </div>
-      <button className="hover:text-gray-600" onClick={handleLogout}>
-        {t('logout')}
-      </button>
+
+      {/* Bottom Section */}
+      <div className="grid grid-cols-2 gap-6">
+        <SalesDistribution />
+        <IntegrationList />
+      </div>
     </div>
   )
 }
+
+export default Home

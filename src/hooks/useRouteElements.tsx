@@ -2,10 +2,16 @@ import AuthGuard from '@/guards/AuthGuard'
 import DefaultLayout from '@/layouts/DefaultLayout'
 import Home from '@/pages'
 import Login from '@/pages/Login'
+import NotFound from '@/pages/Notfound'
+import Template from '@/pages/Template'
 import { useRoutes } from 'react-router-dom'
 
 export default function useRouteElements() {
   const routeElements = useRoutes([
+    {
+      path: '/login',
+      element: <Login />
+    },
     {
       path: '',
       element: <AuthGuard />,
@@ -19,12 +25,20 @@ export default function useRouteElements() {
               element: <Home />
             },
             {
-              path: '/login',
-              element: <Login />
+              path: '/template',
+              element: <Template />
+            },
+            {
+              path: '/*',
+              element: <NotFound />
             }
           ]
         }
       ]
+    },
+    {
+      path: '*',
+      element: <NotFound />
     }
   ])
   return routeElements
