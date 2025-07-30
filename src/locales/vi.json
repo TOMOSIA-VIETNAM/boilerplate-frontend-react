@@ -1,0 +1,12 @@
+{
+  "login": "Đăng nhập",
+  "register": "Đăng kí",
+  "username": "Username",
+  "password": "Mật khẩu",
+  "hello": "Xin chào",
+  "logout": "Đăng xuất",
+  "username_required": "Username là bắt buộc",
+  "password_required": "Mật khẩu là bắt buộc",
+  "password_min_length": "Mật khẩu phải có ít nhất 6 ký tự",
+  "password_max_length": "Mật khẩu phải có ít hơn 160 ký tự"
+}

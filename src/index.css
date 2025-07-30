@@ -1,0 +1,14 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-primary: #3bb6ba;
+  --color-banner: #07162e;
+  --color-inputText: #42526d;
+  --color-inputBorder: #e4e1fd;
+  --color-inputBg: #f6f5fe;
+}
+
+body {
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 400;
+}

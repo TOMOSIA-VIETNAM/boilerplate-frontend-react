@@ -1,0 +1,12 @@
+{
+  "login": "Login",
+  "register": "Register",
+  "username": "Username",
+  "password": "Password",
+  "hello": "Hello",
+  "logout": "Logout",
+  "username_required": "Username is required",
+  "password_required": "Password is required",
+  "password_min_length": "Password must be at least 6 characters",
+  "password_max_length": "Password must be less than 160 characters"
+}
